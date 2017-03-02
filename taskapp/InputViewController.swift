@@ -15,14 +15,14 @@ class InputViewController: UIViewController {
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var contentsTextView: UITextView!
     @IBOutlet weak var datePicker: UIDatePicker!
+    @IBOutlet weak var categoryField: UITextField!
     
-    var realm = try! Realm()
     var task:Task!
+    var realm = try! Realm()
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
         // 背景をタップしたらdismissKeyboardメソッドを呼ぶように設定する
         let tapGesture: UITapGestureRecognizer = UITapGestureRecognizer(target:self, action:#selector(dismissKeyboard))
         self.view.addGestureRecognizer(tapGesture)
@@ -30,6 +30,7 @@ class InputViewController: UIViewController {
         titleTextField.text = task.title
         contentsTextView.text = task.contents
         datePicker.date = task.date as Date
+        categoryField.text = task.category
     }
 
     override func didReceiveMemoryWarning() {
@@ -43,6 +44,7 @@ class InputViewController: UIViewController {
             self.task.title = self.titleTextField.text!
             self.task.contents = self.contentsTextView.text
             self.task.date = self.datePicker.date as NSDate
+            self.task.category = self.categoryField.text!
             self.realm.add(self.task, update: true)
         }
         

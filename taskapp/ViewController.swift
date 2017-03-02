@@ -16,16 +16,14 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     // Realmインスタンスを取得する
     let realm = try! Realm()
-    
     // DB内のタスクが格納されるリスト
     // 日付近い順\順でソート: 降順
     // 以降内容をアップデートするとリスト内は自動的に更新される
-    let taskArray = try! Realm().objects(Task.self).sorted(byProperty: "date", ascending: false)
+    let taskArray = try! Realm().objects(Task.self).sorted(byKeyPath: "date", ascending: false)
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-        
+
         tableView.delegate = self
         tableView.dataSource = self
 
