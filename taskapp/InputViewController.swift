@@ -17,6 +17,7 @@ class InputViewController: UIViewController {
     @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var categoryField: UITextField!
     
+    
     var task:Task!
     var realm = try! Realm()
     
